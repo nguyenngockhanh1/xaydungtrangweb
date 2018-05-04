@@ -45,9 +45,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 			echo "<p style='color:red;'>*sửa thất bại</p>";
 		}
-		$title    = '';
-		$link     = '';
-		$ordernum = '';
 	} else {
 		echo '<p style="color:red;">*ban can nhap day du thong tin</p>';
 	}
