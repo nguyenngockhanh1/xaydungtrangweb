@@ -7,7 +7,7 @@
             <a href="javascript:;" data-toggle="collapse" data-target="#demo_dm"><i class="fa fa-fw fa-file"></i> Danh mục bài viết <i class="fa fa-fw fa-caret-down"></i></a>
             <ul id="demo_dm" class="collapse">
                 <li>
-                    <a href="#">Thêm mới</a>
+                    <a href="add_danhmucbv.php">Thêm mới</a>
                 </li>
                 <li>
                     <a href="#">Danh sách</a>
@@ -18,7 +18,7 @@
             <a href="javascript:;" data-toggle="collapse" data-target="#demo_bv"><i class="fa fa-fw fa-file"></i> Bài viết <i class="fa fa-fw fa-caret-down"></i></a>
             <ul id="demo_bv" class="collapse">
                 <li>
-                    <a href="#">Thêm mới</a>
+                    <a href="add_baiviet.php">Thêm mới</a>
                 </li>
                 <li>
                     <a href="#">Danh sách</a>
@@ -40,7 +40,7 @@
             <a href="javascript:;" data-toggle="collapse" data-target="#demo_sl"><i class="fa fa-fw fa-file"></i> Slider <i class="fa fa-fw fa-caret-down"></i></a>
             <ul id="demo_sl" class="collapse">
                 <li>
-                <a href="add_slider.php">Thêm mới</a>
+                    <a href="add_slider.php">Thêm mới</a>
                 </li>
                 <li>
                     <a href="list_slider.php">Danh sách</a>
@@ -54,7 +54,18 @@
                     <a href="add_video.php">Thêm mới</a>
                 </li>
                 <li>
-                    <a href='../admin/list_video.php'>Danh sách</a>
+                    <a href='list_video.php'>Danh sách</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+        <a href="javascript:;" data-toggle="collapse" data-target="#demo_user"><i class="fa fa-fw fa-file"></i> User<i class="fa fa-fw fa-caret-down"></i></a>
+            <ul id="demo_user" class="collapse">
+                <li>
+                    <a href="add_user.php">Thêm mới</a>
+                </li>
+                <li>
+                    <a href='list_user.php'>Danh sách</a>
                 </li>
             </ul>
         </li>

@@ -9,7 +9,7 @@
 				<tr>
 					<th>Id</th>
 					<th>Title</th>
-					<td>Ảnh</td>
+					<th>Ảnh</th>
 					<th>Link</th>
 					<th>Thứ Tự</th>
 					<th>Trạng Thái</th>
@@ -19,7 +19,7 @@
 			</thead>
 			<tbody>
 				<?php
-				$query   = 'SELECT * FROM tblslider ORDER BY ordernum DESC';
+				$query   = "SELECT * FROM tblslider ORDER BY ordernum";
 				$results = mysqli_query($conn, $query);
 				kt_query($results, $query);
 // ĐƯA ra một mảng với các chỉ số là tên trường
@@ -28,7 +28,7 @@
 					<tr>
 						<td><?php echo $slider['id'];?></td>
 						<td><?php echo $slider['title'];?></td>
-						<td><img width="30px;" src="<?php echo $slider['anh'];?>"/></td>
+						<td><img width="100px;" src="<?php echo $slider['anh'];?>"/></td>
 						<td><?php echo $slider['link'];?></td>
 						<td><?php echo $slider['ordernum'];?></td>
 						<td><?php if ($slider['status'] == 1) {
@@ -37,7 +37,7 @@
 							echo "Không Hiển Thị";
 						}
 						?></td>
-						<td><a href="edit_slider.php?id= <?php echo $slider['id'];?>"><img style='margin: 0 auto; display: block;' src="../images/icon_update.jpeg" alt="icon_update" width= '20px'></a></td>
+						<td><a href="edit_slider.php?id=<?php echo $slider['id'];?>"><img style='margin: 0 auto; display: block;' src="../images/icon_update.jpeg" alt="icon_update" width= '20px'></a></td>
 						<td><a onclick="return confirm('bạn có thật sự muốn xóa không')" href='delete_slider.php?id= <?php echo $slider['id'];?>'><img style='margin: 0 auto; display: block;' src="../images/delete.png" alt="icon_delete" width= '20px'></a></td>
 					</tr>
 					<?php

@@ -18,7 +18,7 @@
 			</thead>
 			<tbody>
 				<?php
-				$query   = 'SELECT * FROM tblvideo ORDER BY ordernum DESC';
+				$query   = "SELECT * FROM tblvideo ORDER BY ordernum ";
 				$results = mysqli_query($conn, $query);
 				kt_query($results, $query);
 // ĐƯA ra một mảng với các chỉ số là tên trường
@@ -35,7 +35,7 @@
 							echo "Không Hiển Thị";
 						}
 						?></td>
-						<td><a href="edit_video.php?id= <?php echo $video['id'];?>"><img style='margin: 0 auto; display: block;' src="../images/icon_update.jpeg" alt="icon_update" width= '20px'></a></td>
+						<td><a href="edit_video.php?id=<?php echo $video['id'];?>"><img style='margin: 0 auto; display: block;' src="../images/icon_update.jpeg" alt="icon_update" width= '20px'></a></td>
 						<td><a onclick="return confirm('bạn có thật sự muốn xóa không')" href='delete_video.php?id= <?php echo $video['id'];?>'><img style='margin: 0 auto; display: block;' src="../images/delete.png" alt="icon_delete" width= '20px'></a></td>
 					</tr>
 					<?php

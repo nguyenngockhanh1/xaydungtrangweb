@@ -1,11 +1,12 @@
 <?php
 include "includes/header.php";
 include "../connect/function.php";
+include "../connect/image_helper.php";
 ?>
 <?php
 include "../connect/mysql.php";
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	$error = array();
+	$errors = array();
 	if (empty($_POST['title'])) {
 		$errors[] = 'title';
 	} else {
@@ -19,30 +20,54 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}
 	$link = $_POST['link'];
 	$status = $_POST['status'];
-	if (empty($errors)) {
-		if(($_FILES['anh']['type']!= "image/jpeg")
-			&&($_FILES['anh']['type']!="image/ipg")
-			&& ($_FILES['anh']['type']!="image/png")
-			&& ($_FILES['anh']['type']!="image/gif")){
-			$message= 'file không đúng định dạng';
-	}
-	elseif($_FILES['anh']['size'] > 1000000){
-		$message= 'kích thước file không được lớn hơn MB';
-	}
-	elseif($_FILES['anh']['size']==0){
-		$message= 'bạn chưa nhập file ảnh';
-	}
-	else{
-		/*lấy tên ảnh*/
-		$filename=$_FILES["anh"]["name"];
-		$filepath="../upload/".$filename;
-		$filetmp=$_FILES["anh"]["tmp_name"];
-		$link_img="../upload/".$filename;
+
+
+	if(($_FILES['anh']['type']!= "image/jpeg")
+		&&($_FILES['anh']['type']!="image/ipg")
+		&& ($_FILES['anh']['type']!="image/png")
+		&& ($_FILES['anh']['type']!="image/gif")){
+		echo  'file không đúng định dạng';
+	$errors[] = 'anh';
+}
+elseif($_FILES['anh']['size'] > 1000000){
+	echo 'kích thước file không được lớn hơn MB';
+	$errors[] = 'anh';
+}
+elseif($_FILES['anh']['size']==0){
+	echo 'bạn chưa nhập file ảnh';
+	$errors[] = 'anh';
+}
+else{
+	/*lấy tên ảnh*/
+	$anh=$_FILES["anh"]["name"];
+	$img_address="../upload/".$anh;
+	$file_tmp=$_FILES["anh"]["tmp_name"];
+	$link_img="../upload/".$anh;
 			// chuyển file ảnh vào thư mục upload
-		move_uploaded_file($filetmp,$filepath);
+	move_uploaded_file($file_tmp,$img_address);
+		// xử lí resize , crop image
+		// hàm explode dùng để cắt đuôi sau dấu . 
+	$temp = explode('.',$anh);
+	if($temp[1] == 'jpeg' or $temp[1] == 'JPEG'){
+		$temp = 'jpg';
 	}
+		//chuyển hết tất cả các định đạng đuôi ảnh thành chữ thường
+	$temp[1] = strtolower($temp[1]);
+	$thumb= 'upload/resized'.$temp[0].'thum_b'.'.'.$temp[1];
+	$imageThumb = new ImagesHelper($link_img);
+		//resize anh
+		//nếu ảnh có độ rộng lớn hơn 700 thì thực hiện resize
+	if($imageThumb-> width() > 700)
+	{
+			//ta có thể resize vê một kích cỡ bất kì
+		$imageThumb -> resize(600, 'resize');
+	}
+	$imageThumb-> save($temp[0].'_thumb','../upload/resized');
+
+}
+if (empty($errors)) {
 		//đối với kiểu int thì không cos dấu nháy
-	$query   = "INSERT INTO tblslider(title,anh,link,ordernum,status) VALUES('{$title}','{$link_img}','{$link}',{$ordernum},{$status})";
+	$query   = "INSERT INTO tblslider(title,anh,anh_thumb,link,ordernum,status) VALUES('{$title}','{$link_img}','{$thumb}','{$link}',{$ordernum},{$status})";
 	$results = mysqli_query($conn, $query) ;
 	kt_query($results, $query);
 		// kiểm tra xem insert có thành công hay không
@@ -67,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	<h3>Thêm Mới Ảnh</h3>
 	<div class="form-group">
 		<label for="">Title</label>
-		<input value="<?php if (isset($_POST['title'])) {echo $title;}?>" type="text" name="title" class='form-control' placeholder="title">
+		<input value="<?php if(isset($_POST['title'])) {echo $title;}?>" type="text" name="title" class='form-control' placeholder="title">
 		<?php
 // check if in array have contais tile
 		if (isset($errors) && in_array('title', $errors)) {
@@ -78,6 +103,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	<div class="form-group">
 		<label>Ảnh đại diện</label>
 		<input style='outline: none;' type="file" name="anh" value="">
+		<?php
+// check if in array have contais tile
+		if (isset($errors) && in_array('anh', $errors)) {
+			echo "<p style= 'color:red;'>*you needs enter images </p>";
+		}
+		?>
 	</div>
 	<div class="form-group">
 		<label for="">Link</label>
@@ -88,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		<input type="text" name="ordernum" class='form-control' placeholder="thứ tự">
 		<?php
 // check if in array have contains ordernum
-		if (isset($errors) && in_array('ordernum', $errors)) {
+		if (isset($errors) && in_array('ordernum',$errors)) {
 			echo '<p style= "color: red;">*you needs enter ordernum for image</p>';
 		}
 		?>

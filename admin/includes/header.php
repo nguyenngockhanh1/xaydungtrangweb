@@ -1,3 +1,8 @@
+<?php session_start();
+if(!isset($_SESSION['id_user'])){
+    header('Location: login.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,7 +36,6 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
 </head>
 
 <body>
@@ -48,24 +52,25 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">QUẢN TRỊ HỆ THỐNG</a>
+                <a class="navbar-brand" href="#">QUẢN TRỊ HỆ THỐNG</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
                 
                 
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Xin chào:&nbsp;admin <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Xin chào:&nbsp;
+                    <?php if(isset($_SESSION['taikhoan'])){echo $_SESSION['taikhoan'];} ?> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                            <a href="edit_user.php?id=<?php if(isset($_SESSION['id_user'])){ echo $_SESSION['id_user']; }?>"><i class="fa fa-fw fa-user"></i> Profile</a>
                         </li>                        
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-gear"></i>Đổi mật khẩu</a>
+                            <a href="doimatkhau.php"><i class="fa fa-fw fa-gear"></i>Đổi mật khẩu</a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>

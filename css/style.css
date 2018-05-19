@@ -10,7 +10,7 @@ body
 }
 #menu_top
 {
-	list-style: none;
+	list-style-type: none;
 	margin:0;
 }
 #logo p
@@ -32,6 +32,20 @@ body
 {
 	background:#333;
 	text-decoration: none;
+}
+#menu_top li .sub_menu li{
+	float: none;
+	list-style-type: none;
+}
+#menu_top li .sub_menu{
+	display: none;
+	position: absolute;
+	z-index: 10;
+	background: #1b926c;
+	min-width: 100px;
+}
+#menu_top li:hover .sub_menu{
+	display: block;
 }
 #search
 {
@@ -225,7 +239,7 @@ body
 #bg_footer
 {
 	background:#333;
-	margin-top:20px;	
+	margin-top:20px;
 	width:100%;
 }
 #footer

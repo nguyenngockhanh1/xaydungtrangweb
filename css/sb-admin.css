@@ -23,7 +23,7 @@
 
 #page-wrapper {
     width: 100%;
-    /*height:800px !important;*/
+    min-height:570px !important;
     padding: 0;
     background-color: #fff;
 }
@@ -229,11 +229,12 @@ ul.alert-dropdown {
 #footer
 {
     text-align: center;
+    background: #5b5b5b;
+    bottom:0;
 }
 #footer p
 {
     font-size:14px;
-    color:#fff;
-    margin-bottom:0;
+    color: #fff;
     line-height:50px;
 }

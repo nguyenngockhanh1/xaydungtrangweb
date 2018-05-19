@@ -13,7 +13,7 @@ if(isset($_GET['id']) && filter_var($_GET['id'],FILTER_VALIDATE_INT,array('min_r
 	exit();
 }
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	$error = array();
+	$errors = array();
 	if (empty($_POST['title'])) {
 		$errors[] = 'title';
 	} else {
@@ -118,5 +118,5 @@ if(mysqli_num_rows($result_id)==1){
 </form>
 <?php
 include "includes/footer.php";
-ob_plush();
+ob_flush();
 ?>
