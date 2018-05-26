@@ -10,7 +10,7 @@
                     <a href="add_danhmucbv.php">Thêm mới</a>
                 </li>
                 <li>
-                    <a href="#">Danh sách</a>
+                    <a href="list_danhmucbv.php">Danh sách</a>
                 </li>
             </ul>
         </li>
@@ -21,7 +21,7 @@
                     <a href="add_baiviet.php">Thêm mới</a>
                 </li>
                 <li>
-                    <a href="#">Danh sách</a>
+                    <a href="list_baiviet.php">Danh sách</a>
                 </li>
             </ul>
         </li>

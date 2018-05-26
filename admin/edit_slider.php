@@ -47,9 +47,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		else{
 			/*lấy tên ảnh*/
 			$anh=$_FILES["anh"]["name"];
-			$img_address="../upload/".$anh;
+			$img_address="../slider/".$anh;
 			$file_tmp=$_FILES["anh"]["tmp_name"];
-			$link_img="../upload/".$anh;
+			$link_img="slider/".$anh;
 			// chuyển file ảnh vào thư mục upload
 			move_uploaded_file($file_tmp,$img_address);
 		// xử lí resize , crop image
@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			}
 		//chuyển hết tất cả các định đạng đuôi ảnh thành chữ thường
 			$temp[1] = strtolower($temp[1]);
-			$thumb= 'upload/resized'.$temp[0].'thum_b'.'.'.$temp[1];
+			$thumb= 'slider/resized'.$temp[0].'thum_b'.'.'.$temp[1];
 	//$imageThumb = new ImagesHelper($link_img);
 		// resize anh
 		// nếu ảnh có độ rộng lớn hơn 700 thì thực hiện resize
@@ -72,14 +72,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	// $imageThumb-> save($temp[0].'_thumb','../upload/resized');
 
 		}
-	}
-// tiến hành xóa ảnh cũ sau khi cập nhật ảnh mới
-	$sql = "SELECT anh,anh_thumb FROM tblslider WHERE id={$id}";
-	$result_update = mysqli_query($conn,$sql);
-	$anh_info= mysqli_fetch_assoc($result_update);
+					// tiến hành xóa ảnh cũ sau khi cập nhật ảnh mới
+		$sql = "SELECT anh,anh_thumb FROM tblslider WHERE id={$id}";
+		$result_update = mysqli_query($conn,$sql);
+		$anh_info= mysqli_fetch_assoc($result_update);
 // delete img in folder upload
-	unlink($anh_info['anh']);
-
+		unlink($anh_info['anh']);
+	}
 	//  end image
 	$link = $_POST['link'];
 	$status = $_POST['status'];
@@ -94,6 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		// kiểm tra xem insert có thành công hay không
 		if (mysqli_affected_rows($conn) == 1) {
 			$message ="<p style='color: blue;'>*sửa thành công</p>";
+
 		} else {
 
 			$message= "<p style='color:red;'>*bạn chưa sửa gì !</p>";
@@ -133,9 +133,9 @@ if(mysqli_num_rows($result_id)==1){
 	</div>
 	<div class="form-group">
 		<label>Ảnh đại diện</label><br>
-		<img src='<?php echo $anh; ?>' width= "200px;" alt=""><br><br>
+		<img src='<?php echo '../'.$anh; ?>' width= "200px;" alt=""><br><br>
 		<!-- khi người dùng không nhập ảnh thì tự động sẽ lấy ảnh cũ nhờ hai ô input với type= "hidden" -->
-		<input type="hidden" name="anh_hidden" value= "<?php echo $anh; ?>">
+		<input type="hidden" name="anh_hidden" value= "<?php echo '../'.$anh; ?>">
 		<input type="hidden" name="anhthumb_hidden" value= "<?php echo $thumb; ?>">
 		<input  style='outline: none;' type="file" name="anh">
 		<?php

@@ -1,31 +1,28 @@
-<div class="row" style="z-index:0;position: relative;">
-    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" id="slider">
-       <div id="wowslider-container">
+       <?php
+       $query_slider = "SELECT * FROM tblslider ORDER BY id DESC";
+       $result_slider = mysqli_query($conn,$query_slider);
+       kt_query($result_slider,$query_slider);
+       ?>
+       <div class="row" style="z-index:0;position: relative;">
+        <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" id="slider">
+         <div id="wowslider-container">
            <div class="ws_images">
-              <ul>
-                <li>
-                   <a href=""><img src="images/slide1.png" alt="The most strong and popular web design trend over last couple of years is a sliding horizontal panels also known as Sliders or Carousels. It is a very effective method to increase the web site usability and engage the user." title="" /></a>
-               </li>
-               <li>
-                   <a href=""><img src="images/slide2.png" alt="WOWSlider is a responsive jQuery image slider with amazing visual effects and tons of professionally made templates." title="Beautiful Skins" /></a>Killer Effects
-               </li>
-               <li><a href=""><img src="images/slide3o.png" alt="NO Coding - WOWSlider is packed with a point-and-click wizard to create fantastic sliders in a matter of seconds without coding and image editing." title="GUI Wizard" /></a>For Windows & Mac
-               </li>
-               <li><img src="images/slide6o.jpg" alt="How to create a slider in 7 seconds" title="" /></li>
-
-           </ul>
-       </div>
-       <div class="ws_bullets">
-         <div>
-            <a href="#"><img src="images/slide1nua.png" alt="CSS3 Slider"/></a>
-            <a href="#"><img src="images/slide2nua.png" alt="CSS Slideshow"/></a>
-            <a href="#"><img src="images/slide3.png" alt="CSS Gallery"/></a>
-            <a href="#"><img src="images/slide6.jpg" alt="How to create a slider in 7 seconds"/></a>
-
+            <ul>
+             <?php
+             while ($slider = mysqli_fetch_array($result_slider,MYSQLI_ASSOC)) {
+              ?>
+              <li>
+                <a href="">
+                  <img height="500px"  src="<?php echo $slider['anh']; ?>" alt="img" title="Beautiful Skins" />
+                </a><?php echo $slider['title']; ?>
+              </li>
+              <?php
+            }
+            ?>
+          </ul>
         </div>
     </div>
-</div>
-<script type="text/javascript" src="js/wowslider.js"></script>
-<script type="text/javascript" src="js/script.js"></script>
-</div>
+    <script type="text/javascript" src="js/wowslider.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+  </div>
 </div>

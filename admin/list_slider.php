@@ -28,7 +28,7 @@
 					<tr>
 						<td><?php echo $slider['id'];?></td>
 						<td><?php echo $slider['title'];?></td>
-						<td><img width="100px;" src="<?php echo $slider['anh'];?>"/></td>
+						<td><img width="100px;" src="<?php echo "../".$slider['anh'];?>"/></td>
 						<td><?php echo $slider['link'];?></td>
 						<td><?php echo $slider['ordernum'];?></td>
 						<td><?php if ($slider['status'] == 1) {
