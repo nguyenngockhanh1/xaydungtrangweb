@@ -10,10 +10,7 @@ include "../connect/function.php";
 		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th>Danh Mục Bài Viết</th>
-					<th>Menu</th>
-					<th>Home</th>
-					<th>Thứ Tự</th>
+					<th>Danh Mục Bài Viết( Menu)</th>
 					<th>Trạng Thái</th>
 					<th>Update</th>
 					<th>Delete</th>
@@ -28,9 +25,6 @@ include "../connect/function.php";
 					?>
 					<tr>
 						<td><?php echo $list_dmbv['danhmucbaiviet']; ?></td>
-						<td><?php echo $list_dmbv['menu']; ?></td>
-						<td><?php echo $list_dmbv['home']; ?></td>
-						<td><?php echo $list_dmbv['ordernum']; ?></td>
 						<td><?php if($list_dmbv['status']==1){ echo "Hiển Thị"; }else{echo "Không HIển Thị";} ?></td>
 						<td><a href="edit_dmbv.php?id=<?php echo $list_dmbv['id']; ?>"><img width="30px" src="../images/icon_update.jpeg" alt="update"></a></td>
 						<td><a href="delete_dmbv.php?id=<?php echo $list_dmbv['id']; ?>"><img width="30px" src="../images/delete.png" alt="delete"></a></td>

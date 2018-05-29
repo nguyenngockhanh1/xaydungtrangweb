@@ -22,7 +22,7 @@ include '../connect/function.php';
 				<?php
 				//limit dùng để lấy ra số bản ghi trên một page
 				//đặt số bản ghi cần hiển thị
-				$limit =4;
+				$limit =1;
 				//xác định vị trị bắt đầu nếu nó tồn tại và nó là kiểu số
 				if(isset($_GET['s'])&& filter_var($_GET['s'],FILTER_VALIDATE_INT,array('min_range'=>1))){
 					$start = $_GET['s'];
@@ -44,7 +44,7 @@ include '../connect/function.php';
 					// record là số bản ghi đếm dc trong cơ sở dữ liệu
 					list($record)= mysqli_fetch_array($result_pg,MYSQLI_NUM);
 					//tìm số trang bằng cách chia số dữ liệu cho limit
-					if($record> $limit){
+					if($record>$limit){
 						// dùng hàm ceil để làm tròn lên vd : 3.2 thành 4
 						$per_page= ceil($record/$limit);
 					}else {

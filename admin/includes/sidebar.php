@@ -26,17 +26,6 @@
             </ul>
         </li>
         <li>
-            <a href="javascript:;" data-toggle="collapse" data-target="#demo_ht"><i class="fa fa-fw fa-file"></i> Hỗ trợ trực tuyến <i class="fa fa-fw fa-caret-down"></i></a>
-            <ul id="demo_ht" class="collapse">
-                <li>
-                    <a href="#">Thêm mới</a>
-                </li>
-                <li>
-                    <a href="#">Danh sách</a>
-                </li>
-            </ul>
-        </li>
-        <li>
             <a href="javascript:;" data-toggle="collapse" data-target="#demo_sl"><i class="fa fa-fw fa-file"></i> Slider <i class="fa fa-fw fa-caret-down"></i></a>
             <ul id="demo_sl" class="collapse">
                 <li>
